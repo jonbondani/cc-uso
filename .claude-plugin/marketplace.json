@@ -1,0 +1,6 @@
+{
+  "name": "cc-uso-marketplace",
+  "owner": { "name": "Daniel López Mesa" },
+  "description": "Panel en vivo de uso de Claude Code: tiempo, tokens, coste y precisión por proyecto",
+  "plugins": [{ "name": "cc-uso", "source": "./" }]
+}
