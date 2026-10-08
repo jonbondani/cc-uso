@@ -1,0 +1,5 @@
+{
+  "name": "cc-uso-marketplace",
+  "owner": { "name": "Daniel López Mesa" },
+  "plugins": [{ "name": "cc-uso", "source": "./" }]
+}
