@@ -25,7 +25,11 @@ function costOf(u: any, model: string): number {
 }
 
 // --- formato ---
-const usd = (n: number) => '$' + (n || 0).toFixed(2)
+// Tipo de cambio de referencia del BCE (7-oct-2026): 1 EUR = 1,1177 USD.
+// Los costes se miden en USD; aquí se convierten a euros al mostrarlos.
+// Actualizar cuando se quiera: 1 / <USD por EUR>.
+const USD_TO_EUR = 1 / 1.1177
+const usd = (n: number) => ((n || 0) * USD_TO_EUR).toFixed(2).replace('.', ',') + ' €'
 const tok = (n: number) => n >= 1e6 ? (n / 1e6).toFixed(2) + 'M' : n >= 1e3 ? (n / 1e3).toFixed(1) + 'k' : String(Math.round(n || 0))
 const dur = (ms: number) => { const m = Math.round((ms || 0) / 60000); return m < 60 ? m + 'm' : Math.floor(m / 60) + 'h ' + (m % 60) + 'm' }
 const pct = (p: number | null) => p == null ? '—' : Math.round(p * 100) + '%'
