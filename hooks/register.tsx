@@ -96,7 +96,8 @@ export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     let project = ''
     try { project = basename(await $.session.root()) } catch { }
-    await update($, liveAtom, () => ({ ...LIVE0, startedAt: Date.now(), project }))
+    // Solo fija el proyecto: no reinicia los contadores, que se pierden en cada recarga del mod.
+    await update($, liveAtom, s => ({ ...s, project, startedAt: s.startedAt || Date.now() }))
     await $.command.register({ name: 'uso', description: 'Cambia de panel en la banda de uso' })
     void rescan($)
     void refreshUsage($)
@@ -193,7 +194,10 @@ export const register: Register = on => {
             </Box>
             <Box flexDirection="row">
               {usage.parts.map(p => (
-                <Text key={p.name} dimColor>{'■ ' + p.name + ' ' + tok(p.tokens) + '  '}</Text>
+                <Text key={p.name}>
+                  <Text color={p.color}>{'■ '}</Text>
+                  <Text dimColor>{p.name + ' ' + tok(p.tokens) + '  '}</Text>
+                </Text>
               ))}
             </Box>
           </Box>
