@@ -1,7 +1,9 @@
 {
   "name": "cc-uso",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Panel en vivo de uso de Claude Code: tiempo, tokens, coste y precision por proyecto (dia/semana/mes)",
-  "author": { "name": "Daniel López Mesa" },
+  "author": {
+    "name": "Daniel López Mesa"
+  },
   "types": "./types/index.d.ts"
 }
